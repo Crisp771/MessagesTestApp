@@ -1,6 +1,7 @@
-angular.module('myApp', [])
-    .factory('messagesFactory',['$http', function ($http) {
-        var endPoint = '/_vti_bin/Brightstarr.EI.Intranet/Retailer/Retailer.svc/'
+myApp
+    .factory('messagesFactory', function ($http) {
+        var host = 'https://website-dev.enterpriseinns.plc.uk';
+        var endPoint = host + '/_vti_bin/Brightstarr.EI.Intranet/Retailer/Retailer.svc/'
         
         function getAccounts(userId) {
             return $http.get(endPoint + 'GetPubAccounts?userId=' + userId);
@@ -13,4 +14,5 @@ angular.module('myApp', [])
         function deleteDashboardMessages(userId, messageId) {
             return $http.post(endPoint + 'DeleteDashboardMessage', { "userId": userId, "messageId": messageId });
         }
-    }]);
+        return { getAccounts : getAccounts, getDashboardMessages : getDashboardMessages, deleteDashboardMessages };
+    });
