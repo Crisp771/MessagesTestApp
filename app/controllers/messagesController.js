@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.messagesView', ['ngRoute'])
+angular.module('myApp.messagesController', ['ngRoute', 'messagesFactory'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/messagesView', {
@@ -9,6 +9,6 @@ angular.module('myApp.messagesView', ['ngRoute'])
   });
 }])
 
-.controller('messagesController', [function() {
-
+.controller('messagesController', [function(messagesFactory) {
+    $scope.messages = messagesFactory.getAccounts('08e1c9e8-ef18-4099-a963-29ba59ef214c');
 }]);

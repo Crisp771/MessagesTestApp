@@ -1,5 +1,5 @@
-angular.module('myApp')
-    .factory('retailerFactory', function ($http) {
+angular.module('myApp', [])
+    .factory('messagesFactory',['$http', function ($http) {
         var endPoint = '/_vti_bin/Brightstarr.EI.Intranet/Retailer/Retailer.svc/'
         
         function getAccounts(userId) {
@@ -13,4 +13,4 @@ angular.module('myApp')
         function deleteDashboardMessages(userId, messageId) {
             return $http.post(endPoint + 'DeleteDashboardMessage', { "userId": userId, "messageId": messageId });
         }
-    });
+    }]);
