@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .Factory('retailerFactory', function ($http) {
+    .factory('retailerFactory', function ($http) {
         var endPoint = '/_vti_bin/Brightstarr.EI.Intranet/Retailer/Retailer.svc/'
         
         function getAccounts(userId) {
