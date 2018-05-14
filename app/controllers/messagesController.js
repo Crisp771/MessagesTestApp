@@ -1,23 +1,32 @@
 'use strict';
 
-// angular.module('myApp', ['ngRoute', 'messagesFactory'])
+myApp.component('messagesComponent', {
+  templateUrl: '/controllers/views/messagesView.html',
+  controller: ['$scope', '$sce', 'messagesFactory', function messagesController($scope, $sce, messagesFactory) {
+    var vm = this;
 
-// .config(['$routeProvider', function($routeProvider) {
-//   $routeProvider.when('/messagesView', {
-//     templateUrl: 'controllers/views/messagesView.html',
-//     controller: 'messagesController'
-//   });
-// }])
+    $scope.currentAccount = { AccountCode: '' };
 
-// .controller('messagesController', [function(messagesFactory, $scope) {
-//     $scope.messages = messagesFactory.getAccounts('08e1c9e8-ef18-4099-a963-29ba59ef214c');
-// }]);
+    $scope.accounts = [{ AccountCode: '' }];
 
-myApp
-.controller('messagesController', ['$scope', 'messagesFactory', function($scope, messagesFactory) {
+    messagesFactory.getAccounts('08e1c9e8-ef18-4099-a963-29ba59ef214c').then(function (response) {
+      $scope.accounts = response.data;
+      $scope.currentAccount = $scope.accounts[0];
+    });
+
     $scope.messages = [];
-    messagesFactory.getAccounts('08e1c9e8-ef18-4099-a963-29ba59ef214c').success(function(data){
-      $scope.messages = data;
+
+    $scope.sce = $sce.trustAsHtml;
+
+    $scope.$watch('currentAccount', function (account) {
+      if (account) {
+        console.log('CurrentAccount Changed to  : ' + account.AccountCode);
+        messagesFactory.getPubMessages('08e1c9e8-ef18-4099-a963-29ba59ef214c', $scope.currentAccount.AccountCode, 1, 5)
+          .then(function (response) {
+            console.log('Got data for account : ' + $scope.currentAccount.AccountCode);
+            $scope.messages = response.data.Messages;
+          });
+      }
     })
-    //$scope.messages = [{'name1': 'value1','name2': 'value2','name3': 'value3'}];
-}]);
+  }]
+});
