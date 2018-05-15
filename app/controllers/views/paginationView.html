@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm">
+        <span>Page {{currentPage}} of {{pages}}</span>
+        <div>
+            <a href="#" class="first" data-ng-click="getFirstPage()" data-ng-disabled="!(currentPage > 1)" value="F">&lt;&lt;</a>
+            <a href="#" class="previous" data-ng-click="getPreviousPage()" data-ng-disabled="!(currentPage > 1)" value="P">&lt;</a>
+            <a href="#" class="next" data-ng-click="getNextPage()" data-ng-disabled="!(currentPage < pages)" value="N">&gt;</a>
+            <a href="#" class="last" data-ng-click="getLastPage()" data-ng-disabled="currentPage == pages" value="L">&gt;&gt;</a>
+        </div>
+    </div>
+</div>

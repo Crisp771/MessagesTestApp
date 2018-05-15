@@ -17,8 +17,14 @@
             <div class="col-sm">{{message.Read}}</div>
         </div>
     </div>
-</div>    
-<div class="row" >
-<div class="col-sm" ng-show='messages.length < 1'>
+</div>
+<div class="row">
+    <div class="col-sm" ng-show='messages.length < 1'>
         <h3>You have no new messages.</h3>
-    </div></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <pagination-component></pagination-component>
+    </div>
+</div>
