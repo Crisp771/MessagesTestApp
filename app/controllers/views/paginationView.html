@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-sm">
+    <div class="col-sm text-center">
         <span>Page {{currentPage}} of {{pages}}</span>
         <div>
-            <a href="#" class="first" data-ng-click="getFirstPage()" data-ng-disabled="!(currentPage > 1)" value="F">&lt;&lt;</a>
-            <a href="#" class="previous" data-ng-click="getPreviousPage()" data-ng-disabled="!(currentPage > 1)" value="P">&lt;</a>
-            <a href="#" class="next" data-ng-click="getNextPage()" data-ng-disabled="!(currentPage < pages)" value="N">&gt;</a>
-            <a href="#" class="last" data-ng-click="getLastPage()" data-ng-disabled="currentPage == pages" value="L">&gt;&gt;</a>
+            <button class="first" ng-click="getFirstPage()" ng-disabled="!(currentPage > 1)" value="F">&lt;&lt;</button>
+            <button class="previous" ng-click="getPreviousPage()" ng-disabled="currentPage == 1" value="P">&lt;</button>
+            <button class="next" ng-click="getNextPage()" ng-disabled="!(currentPage < pages)" value="N">&gt;</button>
+            <button class="last" ng-click="getLastPage()" ng-disabled="currentPage == pages" value="L">&gt;&gt;</button>
         </div>
     </div>
 </div>

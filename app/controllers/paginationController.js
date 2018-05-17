@@ -10,8 +10,8 @@ myApp.component('paginationComponent', {
             $scope.currentPage = currentPage;
         });
         
-        $scope.$parent.$watch('currentPage', function(currentPage){
-            $scope.currentPage = currentPage;
+        $scope.$parent.$watch('pages', function(pages){
+            $scope.pages = pages;
         });
         
 
