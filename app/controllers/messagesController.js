@@ -40,9 +40,11 @@ myApp.component('messagesComponent', {
       messagesFactory.getPubMessages('08e1c9e8-ef18-4099-a963-29ba59ef214c', $scope.currentAccount.AccountCode, $scope.currentPage, $scope.pageSize)
         .then(function (response) {
           console.log('Got data for account : ' + $scope.currentAccount.AccountCode);
-          response.data.Messages.forEach(function (element) {
-            element.show = false;
-          });
+          if (response.data.Messages) {
+            response.data.Messages.forEach(function (element) {
+              element.show = false;
+            });
+          }
           $scope.messages = response.data.Messages;
           $scope.total = response.data.Total;
           $scope.pages = Math.ceil(response.data.Total / $scope.pageSize);
@@ -50,7 +52,7 @@ myApp.component('messagesComponent', {
         });
     };
 
-    $scope.toggleMessageVisibility = function(message) {
+    $scope.toggleMessageVisibility = function (message) {
       message.show = !message.show;
       message.Read = true;
     };
